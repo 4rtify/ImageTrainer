@@ -1,0 +1,7 @@
+weights
+.DS_Store
+d.env
+data
+runs
+tests
+YOLO

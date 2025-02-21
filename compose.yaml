@@ -1,0 +1,28 @@
+services:
+  image-trainer:
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: [all]
+              capabilities: [gpu]
+    network_mode: host
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+
+    env_file:
+      - d.env
+    # command:
+    #   [
+    #     "python",
+    #     "/home/user/YOLO/YOLO/download_script.py",
+    #     "crlab",
+    #     "redi/",
+    #   ]
+    volumes:
+      - ./app:/home/user/ImageTrainer/app
+    command: ["./app/startup_script.sh"]

@@ -16,3 +16,4 @@ pycocotools
 faster-coco-eval
 boto3
 jason
+pytorch-lightning

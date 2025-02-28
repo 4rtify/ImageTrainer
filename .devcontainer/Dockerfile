@@ -54,12 +54,12 @@ COPY d.env /d.env
 RUN git clone https://github.com/RediRobots/YOLO.git
 
 RUN pip install --no-cache-dir -r /requirements-dev.txt
-
-ENV WANDB_MODE=dryrun
+RUN pip install --upgrade *
+ENV WANDB_MODE="offline"
 # RUN git clone https://github.com/WongKinYiu/YOLO.git .
 
 # Ensure pip-installed packages are available in the PATH
-RUN echo 'export PATH=${PATH}:${HOME}/.local/bin' >> ~/.bashrc
+RUN echo 'export PATH=${PATH}:${HOME}/.local/bin:' >> ~/.bashrc
+ENV PYTHONPATH "${PYTHONPATH}:${HOME}/ImageTrainer/YOLO"
 # Optional: Source .bashrc to apply changes in the current session
-
 RUN source ~/.bashrc

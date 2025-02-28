@@ -4,11 +4,17 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-  "workspaceFolder": "/home/user/ImageTrainer",
+  "workspaceFolder": "/home/user/ImageTrainer/",
   "settings": {
     "python.pythonPath": "/usr/local/bin/python3"
   },
-  "runArgs": ["--env-file", "d.env", "--network=host"],
+  "runArgs": [
+    "--env-file",
+    "d.env",
+    "--network=host",
+    "--shm-size=8g", // Adjust the shared memory size as needed
+    "--memory=8g"
+  ],
   "extensions": [
     "ms-python.python",
     "ms-toolsai.jupyter",
@@ -19,6 +25,6 @@
   ],
   // "postCreateCommand": "pip install --no-cache-dir -r /app/requirements.txt",
   "mounts": [
-    "source=${localWorkspaceFolder},target=/home/user/ImageTrainer,type=bind"
+    "source=${localWorkspaceFolder}/app,target=/home/user/ImageTrainer/app,type=bind"
   ]
 }

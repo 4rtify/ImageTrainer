@@ -1,5 +1,5 @@
 import boto3
-import os 
+import os
 import sys
 
 bucket_name, remote_dir_name, host_dir = sys.argv[1:4]
@@ -19,6 +19,18 @@ def uploadDirectoryToS3(bucketName, remoteDirectoryName, hostDirectoryName):
             relative_path = os.path.relpath(local_file_path, hostDirectoryName)
             s3_file_path = os.path.join(remoteDirectoryName, relative_path)
             print(f"Uploading {local_file_path} to {s3_file_path}")
+
+            # Check if the file exists on S3 and delete it if it does
+            try:
+                s3_resource.Object(bucketName, s3_file_path).load()
+                print(f"File {s3_file_path} exists on S3, deleting it.")
+                s3_resource.Object(bucketName, s3_file_path).delete()
+            except s3_resource.meta.client.exceptions.ClientError as e:
+                if e.response['Error']['Code'] == "404":
+                    print(f"File {s3_file_path} does not exist on S3, uploading it.")
+                else:
+                    raise
+
             bucket.upload_file(local_file_path, s3_file_path)
 
 uploadDirectoryToS3(bucket_name, remote_dir_name, host_dir)

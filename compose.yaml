@@ -1,14 +1,14 @@
 services:
   image-trainer:
-    deploy:
-      resources:
-        limits:
-          memory: 24G
-        reservations:
-          devices:
-            - driver: nvidia
-              device_ids: [all]
-              capabilities: [gpu]
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 24G
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           device_ids: [all]
+    #           capabilities: [gpu]
     shm_size: "8gb"
     network_mode: host
     build:
@@ -26,4 +26,4 @@ services:
     #   ]
     volumes:
       - ./app:/home/user/ImageTrainer/app
-    command: ["./app/startup_script.sh"]
+    # command: ["./app/startup_script.sh"]

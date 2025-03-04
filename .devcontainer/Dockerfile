@@ -59,7 +59,7 @@ ENV WANDB_MODE="offline"
 # RUN git clone https://github.com/WongKinYiu/YOLO.git .
 
 # Ensure pip-installed packages are available in the PATH
-RUN echo 'export PATH=${PATH}:${HOME}/.local/bin:' >> ~/.bashrc
-ENV PYTHONPATH "${PYTHONPATH}:${HOME}/ImageTrainer/YOLO"
+RUN echo 'export PATH=${PATH}:${HOME}/.local/bin' >> ~/.bashrc
+RUN echo 'export PYTHONPATH=${PYTHONPATH}:${HOME}/ImageTrainer/YOLO' >> ~/.bashrc
 # Optional: Source .bashrc to apply changes in the current session
 RUN source ~/.bashrc

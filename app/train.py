@@ -20,8 +20,7 @@ def main(cfg: Config):
 
     trainer = Trainer(
         accelerator="auto",
-        max_epochs=1,
-        #max_epochs=getattr(cfg.task, "epoch", None),
+        max_epochs=getattr(cfg.task, "epoch", None),
         precision="16-mixed",
         callbacks=callbacks,
         logger=loggers,
@@ -32,7 +31,6 @@ def main(cfg: Config):
         enable_progress_bar=not getattr(cfg, "quite", False),
         default_root_dir=save_path,
     )
-    model = None
     if cfg.task.task == "train":
         model = TrainModel(cfg)
         trainer.fit(model)
@@ -41,20 +39,7 @@ def main(cfg: Config):
         trainer.validate(model)
     if cfg.task.task == "inference":
         model = InferenceModel(cfg)
-        trainer.predict(model)
-
-    # Save the model
-    print("Saving the model...")
-    if cfg.task.task == "train":
-        try:
-            # Save model with JIT
-            scripted_model = torch.jit.script(model)
-            scripted_model.save("/home/user/ImageTrainer/model.pt")
-            print("Model saved successfully.")
-            
-        except Exception as e:
-            print(f"Error saving the model: {e}")
-            
+        trainer.predict(model)         
 
 if __name__ == "__main__":
     main()

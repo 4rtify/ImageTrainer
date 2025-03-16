@@ -3,7 +3,7 @@ from pathlib import Path
 
 import hydra
 from lightning import Trainer
-from yolo.utils.logger import logger
+from pytorch_lightning.loggers import TensorBoardLogger  # Import the logger
 
 project_root = Path(__file__).resolve().parent.parent
 sys.path.append("/home/user/ImageTrainer/YOLO")
@@ -20,7 +20,7 @@ def main(cfg: Config):
     callbacks, loggers, save_path = setup(cfg)
 
     if not loggers:
-        loggers = logger
+        loggers = TensorBoardLogger("logs", name="my_model")
     
     trainer = Trainer(
         accelerator="auto",

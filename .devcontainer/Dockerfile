@@ -63,3 +63,4 @@ RUN echo 'export PATH=${PATH}:${HOME}/.local/bin:${HOME}/ImageTrainer/YOLO' >> ~
 RUN echo 'export PYTHONPATH=${PYTHONPATH}:${HOME}/ImageTrainer/YOLO' >> ~/.bashrc
 # Optional: Source .bashrc to apply changes in the current session
 RUN source ~/.bashrc
+ENV PYTHONPATH="/home/user/ImageTrainer/YOLO:${PYTHONPATH}"

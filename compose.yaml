@@ -1,14 +1,14 @@
 services:
   image-trainer:
-    deploy:
-      resources:
-        limits:
-          memory: 24G
-        reservations:
-          devices:
-            - driver: nvidia
-              device_ids: ["0"]
-              capabilities: [gpu]
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 24G
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           device_ids: ["0"]
+    #           capabilities: [gpu]
     shm_size: "8gb"
     network_mode: host
     build:

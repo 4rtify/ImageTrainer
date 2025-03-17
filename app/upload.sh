@@ -1,0 +1,1 @@
+python app/upload_weights.py crlab redi/ logs/

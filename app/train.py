@@ -5,9 +5,8 @@ import hydra
 from lightning import Trainer
 from pytorch_lightning.loggers import TensorBoardLogger  # Import the logger
 
-project_root = Path(__file__).resolve().parent.parent
-sys.path.append("/home/user/ImageTrainer/YOLO")
-print(sys.path)
+# project_root = Path(__file__).resolve().parent.parent
+# sys.path.append("/home/user/ImageTrainer/YOLO")
 
 from yolo.config.config import Config
 from yolo.tools.solver import InferenceModel, TrainModel, ValidateModel

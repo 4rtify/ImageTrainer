@@ -25,7 +25,7 @@
   ],
   // "postCreateCommand": "pip install --no-cache-dir -r /app/requirements.txt",
   "mounts": [
-    "source=${localWorkspaceFolder}/app,target=/home/user/ImageTrainer/app,type=bind",
-    "source=${localWorkspaceFolder}/YOLO,target=/home/user/ImageTrainer/YOLO,type=bind"
+    "source=${localWorkspaceFolder}/app,target=/home/user/ImageTrainer/app,type=bind"
+    //"source=${localWorkspaceFolder}/YOLO,target=/home/user/ImageTrainer/YOLO,type=bind"
   ]
 }

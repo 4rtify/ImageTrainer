@@ -3,7 +3,6 @@ from pathlib import Path
 
 import hydra
 from lightning import Trainer
-from pytorch_lightning.loggers import TensorBoardLogger  # Import the logger
 
 sys.path.append("/home/user/ImageTrainer/YOLO")
 
@@ -17,8 +16,8 @@ import torch
 def main(cfg: Config):
     callbacks, loggers, save_path = setup(cfg)
 
-    if not loggers:
-        loggers = TensorBoardLogger("logs", name="my_model")
+    # if not loggers:
+    #     loggers = TensorBoardLogger("logs", name="my_model")
     
     trainer = Trainer(
         accelerator="auto",
@@ -40,7 +39,7 @@ def main(cfg: Config):
         model = ValidateModel(cfg)
         trainer.validate(model)
     if cfg.task.task == "inference":
-        model = InferenceModel(cfg)
+        model = InferenceModel(cfg) 
         trainer.predict(model)         
 
 if __name__ == "__main__":
